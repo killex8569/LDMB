@@ -1,0 +1,7 @@
+
+Version : V0.1
+First public commit : 24/08/2025
+Principal Dev : Alexandre FA (aka Killex8569)
+Languages : French and English
+Documentation : Yes, "man ldmb" or on github at : https://github.com/killex8569/LDMB
+
