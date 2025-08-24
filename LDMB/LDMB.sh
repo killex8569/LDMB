@@ -104,16 +104,28 @@ software_info() {
     main_menu
 }
 
-lsblk_view() {
+sys_info() {
     clear
-    lsblk
+    echo -e "1 - lsblk\n2 - Espace de stockage\n3 - fichier fstab\n9 - Retour main menu\nq - Quitter"
+    read -rp "Que souhaitez vous observer : " system
+    echo
+    case $system in
+        1) lsblk ;;
+        2) df -h;;
+        3) cat /etc/fstab ;;
+        9) main_menu ;;
+        q|Q) echo "Merci d'avoir utilisé LDMB !" ; sleep 1 ; exit 0;;
+        *) sys_info ;;
+    esac
     pause
-    main_menu
+    sys_info
 }
 
 raid_helper() {
     clear
-    echo "test"
+    echo "Raid Helper will help you to choose your type of RAID with the number of disque you have !"
+    sleep 3
+    cat "raid_helper.txt"
     pause
     main_menu
 }
@@ -129,7 +141,7 @@ main_menu() {
     cat LDMB_assci.txt
     echo
     echo "Que voulez-vous faire ?"
-    echo -e "0 - RAID 0\n1 - RAID 1\n2 - RAID 5\n3 - RAID 6\n4 - RAID 10\n5 - Autres\n6 - lsblk\n7 - need help for raid ?\n9 - Informations sur le logiciel\nq - Quitter LDMB"
+    echo -e "0 - RAID 0\n1 - RAID 1\n2 - RAID 5\n3 - RAID 6\n4 - RAID 10\n5 - Autres\n6 - information system\n7 - need help for raid ?\n9 - Informations sur le logiciel\nq - Quitter LDMB"
     echo
 
     read -rp "Votre choix : " choix
@@ -140,7 +152,7 @@ main_menu() {
         3) raid6 ;;
         4) raid10 ;;
         5) autres ;;
-        6) lsblk_view ;;
+        6) sys_info ;;
         7) raid_helper ;;
         9) software_info ;;
         q|Q) echo "Merci d'avoir utilisé LDMB !"; sleep 1 ; exit 0 ;;

@@ -1,0 +1,52 @@
+RAID 0
+Disk min: 2
+Disk recommended: 2
+Disk max: None / Infinite
+Advantages:
+- Maximum read/write performance thanks to striping
+- Total capacity equals the sum of all disks (no storage overhead)
+- Easy to implement
+Disadvantages:
+- No redundancy: the failure of a single disk results in total data loss
+- Reduced reliability (failure risk increases with the number of disks)
+- Not suitable for critical environments
+
+RAID 1
+Disk min: 2
+Disk recommended: 2
+Disk max: None / Infinite
+Advantages:
+- High fault tolerance: data remains available as long as one disk is healthy
+- Simple to set up and recover
+- Faster reads (parallel access from mirrored copies)
+Disadvantages:
+- 50% efficiency (only half of total storage capacity is usable)
+- Higher storage cost
+- Slightly slower writes (data written to both disks)
+
+RAID 5
+Disk min: 3
+Disk recommended: 3
+Disk max: None / Infinite
+Advantages:
+- Good balance between performance, capacity, and redundancy
+- Can tolerate the failure of one disk
+- High usable capacity (N-1 disks available for data)
+- Fast reads due to striping
+Disadvantages:
+- Reduced write performance (parity calculation and storage required)
+- Long and risky rebuild process (if a second disk fails during rebuild, all data is lost)
+- Vulnerable to unrecoverable read errors (URE) on large disks
+
+RAID 6
+Disk min: 4
+Disk recommended: 4
+Disk max: None / Infinite
+Advantages:
+- Can tolerate the failure of two disks simultaneously
+- Good read performance (similar to RAID 5)
+- Suitable for large-capacity environments with big disks
+Disadvantages:
+- Slower write performance than RAID 5 (double parity calculation)
+- Lower storage efficiency (N-2 disks usable for data)
+- Even longer and more resource-intensive rebuilds
