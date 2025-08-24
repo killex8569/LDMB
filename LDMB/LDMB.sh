@@ -31,9 +31,8 @@ echo -e "0 - RAID 0\n1 - RAID 1\n2 - RAID 5\n3 - RAID 6\n4 - RAID 10\n5 - Autres
 
 read -p "Votre choix : " choix
 
-# Vérifier si $choix est dans le tableau options
+# Vérifi si $choix est dans le tableau options
 if [[ ! " ${options[@]} " =~ " $choix " ]]; then
-    echo "Erreur : choix invalide. Redémarrage du script."
     exec "$0"  # relance le script
 elif [ "$choix" = 0 ]; then
     echo "RAID 0"
