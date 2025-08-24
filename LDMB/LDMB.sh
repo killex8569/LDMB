@@ -17,30 +17,136 @@
 # Software protected under the APACHE License.
 # Thank you for using my software! ;)
 #
+
+# LDMB - Linux Disk Manager on Bash
+# Auteur : Alexandre FAUBLADIER-ANETTE
+# Licence : Apache 2.0
+set -euo pipefail
 clear
 
-options=( {0..10} )
-quit=( {q,Q} )
-echo "Bienvenue dans le programme LDMB !"
-echo
-cat LDMB_assci.txt
-echo
-echo "Que voulez-vous faire ?"
-echo -e "0 - RAID 0\n1 - RAID 1\n2 - RAID 5\n3 - RAID 6\n4 - RAID 10\n5 - Autres\n9 - Software Information"
+# ==========================
+# Fonctions utilitaires
+# ==========================
 
-read -p "Votre choix : " choix
+pause() {
+    read -rp "Appuyez sur [Entrée] pour continuer..."
+}
 
-# Vérifi si $choix est dans le tableau options
-if [[ ! " ${options[@]} " =~ " $choix " ]]; then
-    exec "$0"  # relance le script
-elif [ "$choix" = 0 ]; then
-    echo "RAID 0"
-elif [ $choix = 1 ]; then
-    echo "RAID 1"
-elif [ $choix = 9 ]; then
+invalid_option() {
+    echo "Option invalide."
+    pause
+    main_menu
+}
+
+# ==========================
+# Fonctions principales
+# ==========================
+
+raid0() {
+    clear
+    echo "=== RAID 0 ==="
+    echo "Configuration RAID 0 sélectionnée."
+    # Ici tu ajouteras la logique pour créer ton RAID 0
+    pause
+    main_menu
+}
+
+raid1() {
+    clear
+    echo "=== RAID 1 ==="
+    echo "Configuration RAID 1 sélectionnée."
+    # Ici tu ajouteras la logique RAID 1
+    pause
+    main_menu
+}
+
+raid5() {
+    clear
+    echo "=== RAID 5 ==="
+    echo "Configuration RAID 5 sélectionnée."
+    # Ici tu ajouteras la logique RAID 5
+    pause
+    main_menu
+}
+
+raid6() {
+    clear
+    echo "=== RAID 6 ==="
+    echo "Configuration RAID 6 sélectionnée."
+    # Ici tu ajouteras la logique RAID 6
+    pause
+    main_menu
+}
+
+raid10() {
+    clear
+    echo "=== RAID 10 ==="
+    echo "Configuration RAID 10 sélectionnée."
+    # Ici tu ajouteras la logique RAID 10
+    pause
+    main_menu
+}
+
+autres() {
+    clear
+    echo "=== Autres options ==="
+    echo "Exemple : montage manuel, formatage disque, etc."
+    # Ici tu ajoutes les sous-options
+    pause
+    main_menu
+}
+
+software_info() {
+    clear
+    echo "=== Informations sur LDMB ==="
     cat "Software information.txt"
-    sleep 5
-    exec "$0"
-elif [ " $choix " = " $quit[@] " ]
-fi
+    pause
+    main_menu
+}
 
+lsblk_view() {
+    clear
+    lsblk
+    pause
+    main_menu
+}
+
+raid_helper() {
+    clear
+    echo "test"
+    pause
+    main_menu
+}
+
+# ==========================
+# Menu principal
+# ==========================
+
+main_menu() {
+    clear
+    echo "Bienvenue dans LDMB (Linux Disk Manager on Bash)"
+    echo
+    cat LDMB_assci.txt
+    echo
+    echo "Que voulez-vous faire ?"
+    echo -e "0 - RAID 0\n1 - RAID 1\n2 - RAID 5\n3 - RAID 6\n4 - RAID 10\n5 - Autres\n6 - lsblk\n7 - need help for raid ?\n9 - Informations sur le logiciel\nq - Quitter LDMB"
+    echo
+
+    read -rp "Votre choix : " choix
+    case $choix in
+        0) raid0 ;;
+        1) raid1 ;;
+        2) raid5 ;;
+        3) raid6 ;;
+        4) raid10 ;;
+        5) autres ;;
+        6) lsblk_view ;;
+        7) raid_helper ;;
+        9) software_info ;;
+        q|Q) echo "Merci d'avoir utilisé LDMB !"; sleep 1 ; exit 0 ;;
+        *) invalid_option ;;
+    esac
+}
+
+# Lancement du script principal
+main_menu
