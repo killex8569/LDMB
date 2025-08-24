@@ -17,9 +17,28 @@
 # Software protected under the APACHE License.
 # Thank you for using my software! ;)
 #
+#!/bin/bash
+clear
+
+options=( {0..10} )
 
 echo "Bienvenue dans le programme LDMB !"
+echo
+cat LDMB_assci.txt
+echo
+echo "Que voulez-vous faire ?"
+echo -e "0 - RAID 0\n1 - RAID 1\n2 - RAID 5\n3 - RAID 6\n4 - RAID 10\n5 - Autres\n"
 
-echo "Que voulez vous faire ?" 
+read -p "Votre choix : " choix
 
-read -p "1 - RAID 0 \n 2 - RAID 1" choix"
+# Vérifier si $choix est dans le tableau options
+if [[ ! " ${options[@]} " =~ " $choix " ]]; then
+    echo "Erreur : choix invalide. Redémarrage du script."
+    exec "$0"  # relance le script
+elif [ "$choix" = 0 ]; then
+    echo "RAID 0"
+elif [ $choix = 1 ]; then
+    echo "RAID 1"
+
+fi
+
