@@ -32,3 +32,5 @@ while [ $compteur -le 5 ]; do
     echo "Compteur : $compteur"
     ((compteur++))
 done
+
+# $? exprime la dernière commande que l'on as éxécuter s'est bien éxécuter ou pas 

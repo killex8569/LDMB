@@ -17,3 +17,9 @@
 # Software protected under the APACHE License.
 # Thank you for using my software! ;)
 #
+
+echo "Bienvenue dans le programme LDMB !"
+
+echo "Que voulez vous faire ?" 
+
+read -p "1 - RAID 0 \n 2 - RAID 1" choix"
