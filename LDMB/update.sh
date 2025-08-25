@@ -8,6 +8,7 @@ make_update() {
     cd LDMB/LDMB
     chmod +x uninstall.sh ; ./uninstall.sh
     chmod +x install.sh ; ./install.sh
+    sudo rm -rf /tmp/LDMB
 }
 
 
