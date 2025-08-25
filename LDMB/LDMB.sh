@@ -49,18 +49,45 @@ raid0() {
     clear
     echo "=== RAID 0 ==="
     echo "Configuration RAID 0 sélectionnée."
+
     if [[ $nb_disk -lt 2 ]]; then
         echo "You must configure your disks first!"
         pause
         partitions_info
         return
     fi
+
+    echo "Disks selected for RAID 0:"
     for ((i=0; i<${#table[@]}; i++)); do
-        echo "- ${table[$i]}"
+        echo "- Disk $((i+1)): ${table[$i]}"
     done
+
+    echo
+    read -rp "Enter the name of the RAID device (default: /dev/md0): " raid_name
+    raid_name=${raid_name:-/dev/md0}
+
+    echo
+    echo "About to create RAID 0 on: ${table[*]}"
+    read -rp "Are you sure? This will erase all data! (y/N): " confirm
+
+    if [[ "$confirm" =~ ^[Yy]$ ]]; then
+        sudo mdadm --create --verbose "$raid_name" \
+            --level=0 \
+            --raid-devices="$nb_disk" \
+            "${table[@]}"
+
+        echo "RAID 0 created successfully as $raid_name"
+        echo
+        echo "Saving mdadm configuration..."
+        sudo mdadm --detail --scan | sudo tee -a /etc/mdadm.conf > /dev/null
+    else
+        echo "Aborted."
+    fi
+
     pause
     main_menu
 }
+
 
 raid1() {
     clear
