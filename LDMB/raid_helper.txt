@@ -50,3 +50,4 @@ Disadvantages:
 - Slower write performance than RAID 5 (double parity calculation)
 - Lower storage efficiency (N-2 disks usable for data)
 - Even longer and more resource-intensive rebuilds
+

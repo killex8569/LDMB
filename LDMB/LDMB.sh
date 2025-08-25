@@ -99,6 +99,7 @@ autres() {
 software_info() {
     clear
     echo "=== Informations sur LDMB ==="
+    cat "version.txt"
     cat "Software information.txt"
     pause
     main_menu
@@ -126,7 +127,7 @@ partitions_info() {
 
 sys_info() {
     clear
-    echo -e "1 - lsblk\n2 - Espace de stockage\n3 - fichier fstab\n9 - Retour main menu\n4 - Renseigner les partitions\nq - Quitter"
+    echo -e "1 - lsblk\n2 - Espace de stockage\n3 - fichier fstab\n4 - Renseigner les partitions\n9 - Retour main menu\nq - Quitter"
     read -rp "Que souhaitez vous observer : " system
     echo
     case $system in
@@ -148,6 +149,7 @@ raid_helper() {
     sleep 3
     clear
     cat "raid_helper.txt"
+    echo ; echo 
     pause
     main_menu
 }
