@@ -68,18 +68,50 @@ raid0() {
 
     echo
     echo "About to create RAID 0 on: ${table[*]}"
-    read -rp "Are you sure? This will erase all data! (y/N): " confirm
+    read -rp "Are you sure? This will ERASE ALL DATA on these disks! (y/N): " confirm
 
     if [[ "$confirm" =~ ^[Yy]$ ]]; then
+        # Création du RAID
         sudo mdadm --create --verbose "$raid_name" \
             --level=0 \
             --raid-devices="$nb_disk" \
             "${table[@]}"
 
-        echo "RAID 0 created successfully as $raid_name"
         echo
+        echo "RAID 0 created successfully as $raid_name"
         echo "Saving mdadm configuration..."
         sudo mdadm --detail --scan | sudo tee -a /etc/mdadm.conf > /dev/null
+
+        # MKFS
+        echo
+        echo "Creating ext4 filesystem on $raid_name..."
+        sudo mkfs.ext4 -F "$raid_name"
+
+        # Point de montage
+        echo
+        read -rp "Enter a mount point (default: /mnt/raid0): " mount_point
+        mount_point=${mount_point:-/mnt/raid0}
+        sudo mkdir -p "$mount_point"
+
+        # Montage initial
+        echo "Mounting $raid_name on $mount_point..."
+        sudo mount "$raid_name" "$mount_point"
+
+        # Récupérer l’UUID et maj du fstab
+        uuid=$(blkid -s UUID -o value "$raid_name")
+        if ! grep -q "$uuid" /etc/fstab; then
+            echo "UUID=$uuid   $mount_point   ext4   defaults   0   0" | sudo tee -a /etc/fstab
+            echo "Entry added to /etc/fstab."
+        else
+            echo "fstab already contains an entry for $raid_name."
+        fi
+
+        echo
+        echo "RAID 0 setup complete!"
+        echo "Device: $raid_name"
+        echo "Mount point: $mount_point"
+        echo "Persistent mount configured in /etc/fstab"
+
     else
         echo "Aborted."
     fi
@@ -87,6 +119,7 @@ raid0() {
     pause
     main_menu
 }
+
 
 
 raid1() {
@@ -160,6 +193,7 @@ partitions_info() {
     echo "Summary of disks:"
     for ((i=0; i<${#table[@]}; i++)); do
         echo "- Disk $((i+1)): ${table[$i]}"
+        pause
         main_menu
     done
 
