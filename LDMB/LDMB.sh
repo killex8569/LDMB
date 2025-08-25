@@ -50,6 +50,7 @@ raid0() {
     echo "=== RAID 0 ==="
     echo "Configuration RAID 0 sélectionnée."
 
+    # Vérifier que les disques ont été renseignés
     if [[ $nb_disk -lt 2 ]]; then
         echo "You must configure your disks first!"
         pause
@@ -57,12 +58,13 @@ raid0() {
         return
     fi
 
+    # Afficher les disques sélectionnés
     echo "Disks selected for RAID 0:"
     for ((i=0; i<${#table[@]}; i++)); do
         echo "- Disk $((i+1)): ${table[$i]}"
     done
 
-    echo
+    # Nom du RAID
     read -rp "Enter the name of the RAID device (default: /dev/md0): " raid_name
     raid_name=${raid_name:-/dev/md0}
 
@@ -79,16 +81,17 @@ raid0() {
 
         echo
         echo "RAID 0 created successfully as $raid_name"
-        echo "Saving mdadm configuration..."
-        sudo mdadm --detail --scan | sudo tee -a /etc/mdadm.conf > /dev/null
 
-        # MKFS
+        # Sauvegarde de la configuration mdadm
+        echo "Saving mdadm configuration..."
+        sudo mdadm --detail --scan | sudo tee /etc/mdadm.conf > /dev/null
+
+        # Formater en ext4
         echo
         echo "Creating ext4 filesystem on $raid_name..."
         sudo mkfs.ext4 -F "$raid_name"
 
         # Point de montage
-        echo
         read -rp "Enter a mount point (default: /mnt/raid0): " mount_point
         mount_point=${mount_point:-/mnt/raid0}
         sudo mkdir -p "$mount_point"
@@ -97,10 +100,10 @@ raid0() {
         echo "Mounting $raid_name on $mount_point..."
         sudo mount "$raid_name" "$mount_point"
 
-        # Récupérer l’UUID et maj du fstab
+        # Ajouter dans /etc/fstab de manière sûre
         uuid=$(blkid -s UUID -o value "$raid_name")
         if ! grep -q "$uuid" /etc/fstab; then
-            echo "UUID=$uuid   $mount_point   ext4   defaults   0   0" | sudo tee -a /etc/fstab
+            echo "UUID=$uuid   $mount_point   ext4   defaults,nofail,x-systemd.device-timeout=10   0   0" | sudo tee -a /etc/fstab
             echo "Entry added to /etc/fstab."
         else
             echo "fstab already contains an entry for $raid_name."
@@ -119,6 +122,7 @@ raid0() {
     pause
     main_menu
 }
+
 
 
 
