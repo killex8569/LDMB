@@ -10,7 +10,7 @@ LDMB (Linux Disk Manager on Bash), est un outils permettant de pouvoirs créer e
 Pour installer GDL, vous devez :
 
 ```
-cd /tpm ; git clone https://github.com/killex8569/LDMB.git ; cd LDMB ; chmod +x install.sh ; ./install.sh
+cd /tmp ; git clone https://github.com/killex8569/LDMB.git ; cd LDMB ; chmod +x install.sh ; ./install.sh
 ```
 
 ## Comment utiliser GDL
