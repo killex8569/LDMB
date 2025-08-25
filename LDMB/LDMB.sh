@@ -160,7 +160,9 @@ partitions_info() {
     echo "Summary of disks:"
     for ((i=0; i<${#table[@]}; i++)); do
         echo "- Disk $((i+1)): ${table[$i]}"
+        main_menu
     done
+
 }
 
 sys_info() {
