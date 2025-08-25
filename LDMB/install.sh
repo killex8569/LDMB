@@ -21,6 +21,7 @@ install() {
     sudo cp "ldmb" /usr/local/bin || echo "Warning: LDMB CLI File not found"
     sudo cp "uninstall.sh" /opt/LDMB || echo "Warning: uninstall File not found"
     sudo cp "update.sh" /opt/LDMB || echo "Warning: update File not found"
+    sudo cp "version.txt" /opt/LDMB || echo "Warning Version File not found"
     sudo chmod +x /opt/LDMB/update.sh
     sudo chmod +x /usr/local/bin/ldmb
     sudo chmod +x /opt/LDMB/uninstall.sh
