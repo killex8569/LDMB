@@ -49,6 +49,12 @@ raid0() {
     clear
     echo "=== RAID 0 ==="
     echo "Configuration RAID 0 sélectionnée."
+    if [[ $nb_disk -lt 2 ]]; then
+        echo "You must configure your disks first!"
+        pause
+        partitions_info
+        return
+    fi
     for ((i=0; i<${#table[@]}; i++)); do
         echo "- ${table[$i]}"
     done
