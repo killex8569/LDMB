@@ -23,6 +23,9 @@
 # Licence : Apache 2.0
 set -euo pipefail # empêche le script de continuer si il y a une erreur 
 clear
+nb_disk=0
+table=()
+
 
 # ==========================
 # Fonctions utilitaires
@@ -46,7 +49,9 @@ raid0() {
     clear
     echo "=== RAID 0 ==="
     echo "Configuration RAID 0 sélectionnée."
-    # Ici tu ajouteras la logique pour créer ton RAID 0
+    for ((i=0; i<${#table[@]}; i++)); do
+        echo "- ${table[$i]}"
+    done
     pause
     main_menu
 }
