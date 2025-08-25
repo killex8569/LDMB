@@ -24,9 +24,11 @@ install() {
     sudo chmod +x /opt/LDMB/update.sh
     sudo chmod +x /usr/local/bin/ldmb
     sudo chmod +x /opt/LDMB/uninstall.sh
+    
 
 
     echo "Installation finished!"
+    sudo rm -rf /tmp/LDMB
 }
 
 install

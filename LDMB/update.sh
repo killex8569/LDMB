@@ -15,7 +15,7 @@ make_update() {
 update() {
     clear
     echo "Update LDMB ?"
-    read -rp "Y/n" choix
+    read -rp "Y/n : " choix
     case $choix in
         y|Y) make_update ;;
         n|N) echo "Aborting update"; exit 0 ;;
