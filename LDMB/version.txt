@@ -1,2 +1,2 @@
-Version : V0.91
-Start on 25/08/2025
+Version : V0.92
+Launch on 25/08/2025

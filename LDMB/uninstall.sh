@@ -4,6 +4,7 @@ set -euo pipefail
 dell() {
     sudo rm -rf /opt/LDMB
     sudo rm -f /usr/local/bin/ldmb
+    sudo rm -f /etc/bash_completion.d/ldmb
     echo "All files have been deleted :( Thanks for using my software !"
 }
 
