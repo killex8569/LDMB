@@ -1,6 +1,6 @@
 # FR 
 
-# Attention, toujours en cours de developpement et aucun test n'ont encore été réaliser !
+# Attention, toujours en cours de developpement et aucun test de sécurités n'ont encore été réaliser !
 
 ## LDMB
 LDMB (Linux Disk Manager on Bash), est un outils permettant de pouvoirs créer et maintenire facilement des partitions et des disques sous Linux. L'utilitaire vous propose de pouvoirs créer et géré des RAID, créer et géré des partitions simple, modifier ou mettre à jour vos partitions. LDMB est opensource, gratuit et sous licence Apache 2.0 !
