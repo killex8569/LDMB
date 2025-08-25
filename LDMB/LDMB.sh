@@ -21,7 +21,7 @@
 # LDMB - Linux Disk Manager on Bash
 # Auteur : Alexandre FAUBLADIER-ANETTE
 # Licence : Apache 2.0
-set -euo pipefail
+set -euo pipefail # empêche le script de continuer si il y a une erreur 
 clear
 
 # ==========================
@@ -104,15 +104,36 @@ software_info() {
     main_menu
 }
 
+
+partitions_info() {
+    clear
+    read -rp "Combiens de disques souhaitez vous utiliser ? (minimum 2): " nb_disk
+    if [ "$nb_disk" -lt 2 ]; then
+        echo "You need to select at least 2 disk / part or more !"
+        partitions_info
+        return
+    fi
+    table=()
+    for (( i=1; i<=nb_disk; i++ )); do     # 1
+        read -rp "Enter your disk/partition #$i: " part
+        table+=("$part")
+    done
+    echo "Summary of disks:"
+    for ((i=0; i<${#table[@]}; i++)); do
+        echo "- Disk $((i+1)): ${table[$i]}"
+    done
+}
+
 sys_info() {
     clear
-    echo -e "1 - lsblk\n2 - Espace de stockage\n3 - fichier fstab\n9 - Retour main menu\nq - Quitter"
+    echo -e "1 - lsblk\n2 - Espace de stockage\n3 - fichier fstab\n9 - Retour main menu\n4 - Renseigner les partitions\nq - Quitter"
     read -rp "Que souhaitez vous observer : " system
     echo
     case $system in
         1) lsblk ;;
         2) df -h;;
         3) cat /etc/fstab ;;
+        4) partitions_info ;;
         9) main_menu ;;
         q|Q) echo "Merci d'avoir utilisé LDMB !" ; sleep 1 ; exit 0;;
         *) sys_info ;;
@@ -125,6 +146,7 @@ raid_helper() {
     clear
     echo "Raid Helper will help you to choose your type of RAID with the number of disque you have !"
     sleep 3
+    clear
     cat "raid_helper.txt"
     pause
     main_menu
