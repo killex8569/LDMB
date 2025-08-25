@@ -161,9 +161,9 @@ main_menu() {
     echo "Bienvenue dans LDMB (Linux Disk Manager on Bash)"
     echo
     cat LDMB_assci.txt
-    echo
-    echo "Version V0.8"
-    echo
+    # echo
+    # echo "Version V0.8"
+    # echo
     echo "Que voulez-vous faire ?"
     echo -e "0 - RAID 0\n1 - RAID 1\n2 - RAID 5\n3 - RAID 6\n4 - RAID 10\n5 - Autres\n6 - information system\n7 - need help for raid ?\n9 - Informations sur le logiciel\nq - Quitter LDMB"
     echo
