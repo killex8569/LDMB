@@ -11,6 +11,7 @@ case "$1" in
             exit 1
         fi
         ;;
+    update) cd /opt/LDMB ; ./update.sh ;;
     *)
         echo "Usage: ldmb start"
         exit 1
