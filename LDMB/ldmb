@@ -1,0 +1,18 @@
+#!/bin/bash
+set -euo pipefail
+
+case "$1" in
+    start)
+        if [[ -x /opt/LDMB/LDMB.sh ]]; then
+            cd /opt/LDMB
+            exec ./LDMB.sh
+        else
+            echo "Error: /opt/LDMB/LDMB.sh not found or not executable"
+            exit 1
+        fi
+        ;;
+    *)
+        echo "Usage: ldmb start"
+        exit 1
+        ;;
+esac
