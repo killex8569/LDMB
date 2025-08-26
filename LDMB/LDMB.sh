@@ -113,6 +113,8 @@ raid0() {
         echo "RAID 0 setup complete!"
         echo "Device: $raid_name"
         echo "Mount point: $mount_point"
+        sudo chown "$USER:$USER" "$mount_point"
+
         echo "Persistent mount configured in /etc/fstab"
 
     else
