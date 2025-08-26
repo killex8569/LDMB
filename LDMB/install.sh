@@ -27,7 +27,7 @@ install() {
     sudo chmod +x /opt/LDMB/uninstall.sh
 
     sudo cp "bash completion.sh" /etc/bash_completion.d/ldmb
-    sudo source /etc/bash_completion.d/ldmb
+    source /etc/bash_completion.d/ldmb
 
     echo "Installation finished!"
     sudo rm -rf /tmp/LDMB
