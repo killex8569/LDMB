@@ -100,6 +100,10 @@ raid0() {
         echo "Mounting $raid_name on $mount_point..."
         sudo mount "$raid_name" "$mount_point"
 
+        # Changer les droits pour l’utilisateur courant
+        echo "Setting ownership of $mount_point to $USER..."
+        sudo chown -R "$USER:$USER" "$mount_point"
+
         # Ajouter dans /etc/fstab de manière sûre
         uuid=$(blkid -s UUID -o value "$raid_name")
         if ! grep -q "$uuid" /etc/fstab; then
