@@ -12,6 +12,8 @@ case "$1" in
         fi
         ;;
     update) cd /opt/LDMB ; ./update.sh ;;
+
+    uninstall) cd /opt/LDMB ; ./uninstall ;;
     *)
         echo "Usage: ldmb start"
         exit 1
