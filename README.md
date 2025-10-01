@@ -51,3 +51,17 @@ LDMB (Linux Disk Manager on Bash) is a tools that allows you to easily create, m
 
 
 ## Full documentation
+
+
+
+
+# étape à réaliser pour interface web
+
+- Regarder API python (FastAPI)
+- Appeller commandes bash via fastAPI
+- Compléter le fichier ldmb pour rajouter des commandes sans le script principal CLI pour utilisateur --> Une commande doit pouvoirs me permettre de créer ce que je veux.
+- Implémenter une ou plusieurs pages web
+- Relier page html avec l'api
+- Mettre bootstrap
+
+
