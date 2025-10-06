@@ -31,15 +31,17 @@ GDL --> Manuel d'exploitation : `man gdlb`
 
 ## Documentation complète
 
+## Élément à réaliser pour finaliser le projet 
 
-# étape à réaliser pour interface web
 
-- Regarder API python (FastAPI)
-- Appeller commandes bash via fastAPI
-- Compléter le fichier ldmb pour rajouter des commandes sans le script principal CLI pour utilisateur --> Une commande doit pouvoirs me permettre de créer ce que je veux.
-- Implémenter une ou plusieurs pages web
+- Créer un man complet (mettre les options, les codes d'erreures avec leurs significations, si possible mettre un ldmb --help aussi)
+- Mettre une FastApi en python
+- Complété les fichiers Bash pour permettre d'éxécuter une commande personnaliser en CLI --> Une commande doit pouvoirs me permettre de créer ce que je veux
+- Implémenter Min 2 pages webs (Une pour créer et une pour lire les données et les éléments créer)
 - Relier page html avec l'api
-- Mettre bootstrap
+- Implémenter Bootstrap et/ou d'autres éléments.
+
+
 
 ---
 
