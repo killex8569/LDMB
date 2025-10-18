@@ -15,9 +15,9 @@ cd /tmp ; git clone https://github.com/killex8569/LDMB.git ; cd LDMB ; cd LDMB ;
 
 ## Comment utiliser GDL
 
-`gdlb start` --> Interface CLI (choixi multiple)
+`ldmb start` --> Interface CLI (choixi multiple)
 
-`gdlb ...` --> Via ligne de commande
+`ldmb ...` --> Via ligne de commande
 
 ## Manuel de l'utilisateurs
 Il est possible d'utiliser GDL de différentes manières ! Dans un premier temps en ligne de commande en tappant dans le terminal les instruction que vous souhaitez
@@ -25,7 +25,7 @@ Il est possible d'utiliser GDL de différentes manières ! Dans un premier temps
 
 ## Contenue
 
-GDL --> Manuel d'exploitation : `man gdlb`
+GDL --> Manuel d'exploitation : `man ldmb`
     --> Interface de création (interaction avec l'utilisateur)
     --> configuration via ligne de commande si possible  
 
